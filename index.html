@@ -8,8 +8,37 @@
   </style>
 </head>
 <body>
-  From: <a href="https://stackoverflow.com/questions/31512504/html5-notification-not-working-in-mobile-chrome">HTML5 Notification not working in Mobile Chrome</a>
-  <img width="300" height="300" src="thissite.svg" />
+  <p>Time remaining: <span id="countdown"></span> seconds</p>
+  <p>
+    From: <a href="https://stackoverflow.com/questions/31512504/html5-notification-not-working-in-mobile-chrome">HTML5
+      Notification not working in Mobile Chrome</a></p>
+  <p>
+    <img width="300" height="300" src="thissite.svg" />
+  </p>
   <script src="./index.js"></script>
+  <script>
+    // Set the target time for the countdown (in seconds)
+    const countdownTime = 30;
+
+    // Get the HTML element where the countdown will be displayed
+    const countdownElement = document.getElementById('countdown');
+
+    // Update the countdown every second
+    const countdownInterval = setInterval(function () {
+      // Calculate the remaining time (in seconds)
+      const remainingTime = Math.max(countdownTime - Math.floor((Date.now() - startTime) / 1000), 0);
+
+      // Update the countdown element with the remaining time
+      countdownElement.textContent = remainingTime;
+
+      // If the countdown has reached zero, clear the interval
+      if (remainingTime === 0) {
+        clearInterval(countdownInterval);
+      }
+    }, 1000);
+
+    // Get the start time of the countdown
+    const startTime = Date.now();
+  </script>
 </body>
 </html>
